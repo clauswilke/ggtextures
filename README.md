@@ -18,7 +18,7 @@ devtools::install_github("clauswilke/ggtextures")
 
 ## Example
 
-Basic example of a textured rectangle:
+Basic example of a textured rectangle drawn with grid:
 
 ``` r
 library(ggtextures)
@@ -44,4 +44,22 @@ grid.draw(tg1)
 grid.draw(tg2)
 ```
 
-<img src="man/figures/README-textures-1.png" width="100%" />
+<img src="man/figures/README-texture-grob-1.png" width="100%" />
+
+Basic example of textured rectangles in ggplot2:
+
+``` r
+library(ggplot2)
+library(tibble)
+
+data <- tibble(
+  xmin = c(1, 2.5), ymin = c(1, 1), xmax = c(2, 4), ymax = c(4, 3),
+  image = list("https://jeroen.github.io/images/Rlogo.png",
+               "https://jeroen.github.io/images/tiger.svg")
+)
+
+ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +
+  geom_textured_rect()
+```
+
+<img src="man/figures/README-geom-textured-rect-1.png" width="100%" />

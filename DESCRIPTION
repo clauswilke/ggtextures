@@ -17,6 +17,7 @@ Imports:
     rlang,
     purrr,
     grid,
-    magick
+    magick,
+    scales
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0

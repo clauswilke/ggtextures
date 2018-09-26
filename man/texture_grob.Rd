@@ -10,8 +10,6 @@ texture_grob(img, x = unit(0.5, "npc"), y = unit(0.5, "npc"),
   img_width = unit(1, "null"), img_height = NA, nrow = NA,
   ncol = NA, hjust = 0.5, vjust = 0, fill = "#E8E8E8",
   color = "#000000", lty = 1, lwd = 1, clip = "on")
-
-\method{makeContent}{texture_grob}(x)
 }
 \arguments{
 \item{img}{The image, in magick format}

@@ -9,7 +9,7 @@ Authors@R:
 Description: This package provides functions and geoms to draw textured rectangles and
   bars with the grid graphics system and with ggplot2. This enables both bar graphs with
   pattern fill and isotype bar graphs.
-License: MIT + file LICENSE
+License: GPL-2 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 

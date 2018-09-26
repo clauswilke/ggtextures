@@ -1,17 +1,26 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 # ggtextures
 
 Written by Claus O. Wilke
 
-This package provides functions to draw textured rectangles and bars
-with the grid graphics system and with ggplot2.
+This package provides functions to draw textured rectangles and bars with the grid graphics system and with ggplot2.
 
 ## Installation
 
 Please install from github via:
-
 ``` r
 devtools::install_github("clauswilke/ggtextures")
 ```
@@ -19,8 +28,7 @@ devtools::install_github("clauswilke/ggtextures")
 ## Example
 
 Basic example of a textured rectangle:
-
-``` r
+```{r textures}
 library(ggtextures)
 library(grid)
 
@@ -43,5 +51,3 @@ tg2 <- texture_grob(
 grid.draw(tg1)
 grid.draw(tg2)
 ```
-
-<img src="man/figures/README-textures-1.png" width="100%" />

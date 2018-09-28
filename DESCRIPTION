@@ -22,6 +22,7 @@ Imports:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
 Collate: 
+    'draw_key_texture.R'
     'geom-textured-rect.R'
     'geom-textured-bar.R'
     'geom-isotype-bar.R'

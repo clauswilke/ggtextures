@@ -77,11 +77,14 @@ texture images.
 \examples{
 library(ggplot2)
 library(tibble)
+library(magick)
 
 data <- tibble(
   xmin = c(1, 2.5), ymin = c(1, 1), xmax = c(2, 4), ymax = c(4, 3),
-  image = list("https://jeroen.github.io/images/Rlogo.png",
-               "https://jeroen.github.io/images/tiger.svg")
+  image = list(
+    "https://jeroen.github.io/images/Rlogo.png",
+    image_read_svg("https://jeroen.github.io/images/tiger.svg")
+   )
 )
 
 ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +

@@ -20,14 +20,15 @@
 #' @examples
 #' library(ggplot2)
 #' library(tibble)
+#' library(magick)
 #'
 #' data <- tibble(
 #'   count = c(5, 3, 6),
 #'   animal = c("giraffe", "elephant", "horse"),
 #'   image = list(
-#'     "http://steveharoz.com/research/isotype/icons/giraffe.svg",
-#'     "http://steveharoz.com/research/isotype/icons/elephant.svg",
-#'     "http://steveharoz.com/research/isotype/icons/horse.svg"
+#'     image_read_svg("http://steveharoz.com/research/isotype/icons/giraffe.svg"),
+#'     image_read_svg("http://steveharoz.com/research/isotype/icons/elephant.svg"),
+#'     image_read_svg("http://steveharoz.com/research/isotype/icons/horse.svg")
 #'   )
 #' )
 #'
@@ -38,7 +39,7 @@
 #' ggplot(data, aes(animal, count, image = image)) +
 #'   geom_isotype_col(
 #'     img_width = grid::unit(1, "native"), img_height = NULL,
-#'     ncol = NA, nrow = 1, hjust = 0, vjust = 0.5
+#'     ncol = NA, nrow = 1, hjust = 0, vjust = 0.5, fill = "#80808040"
 #'   ) +
 #'   coord_flip() +
 #'   theme_minimal()

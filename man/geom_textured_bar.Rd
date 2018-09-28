@@ -76,16 +76,18 @@ library(tibble)
 df <- tibble(
   trt = c("a", "b", "c"),
   outcome = c(2.3, 1.9, 3.2),
-  image = list("http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks2-256.jpg",
-               "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/stone2-256.jpg",
-               "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/siding1-256.jpg")
+  image = c(
+    "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks2-256.jpg",
+    "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/stone2-256.jpg",
+    "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/siding1-256.jpg"
   )
+)
 
 ggplot(df, aes(trt, outcome, image = image)) +
   geom_textured_col()
 
 # textured bars
-image = list(
+images = c(
   compact = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks2-256.jpg",
   midsize = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/stone2-256.jpg",
   suv = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/siding1-256.jpg",
@@ -95,10 +97,12 @@ image = list(
   subcompact = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/concrete1-256.jpg"
 )
 
-mpg$image <- image[mpg$class]
+ggplot(mpg, aes(class, image = class)) +
+  geom_textured_bar() +
+  scale_image_manual(values = images)
 
-ggplot(mpg, aes(class, image = image)) + geom_textured_bar()
-
-ggplot(mpg, aes(factor(trans), group = class, image = image)) + geom_textured_bar()
+ggplot(mpg, aes(factor(trans), image = class)) +
+  geom_textured_bar() +
+  scale_image_manual(values = images)
 }
 \keyword{datasets}

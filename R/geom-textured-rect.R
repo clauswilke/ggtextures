@@ -92,7 +92,7 @@ GeomTexturedRect <- ggproto("GeomTexturedRect",
           }
 
           texture_grob(
-            magick::image_read(image),
+            get_raster_image(image),
             x = unit(xmin, "native"), y = unit(ymax, "native"),
             width = unit(xmax - xmin, "native"),
             height = unit(ymax - ymin, "native"),
@@ -117,6 +117,17 @@ GeomTexturedRect <- ggproto("GeomTexturedRect",
   draw_key = draw_key_polygon
 )
 
+get_raster_image <- function(img) {
+  UseMethod("get_raster_image", img)
+}
+
+get_raster_image.default <- function(img) {
+  magick::image_read(img)
+}
+
+`get_raster_image.magick-image` <- function(img) {
+  img
+}
 
 # sources of free textures to use:
 # https://www.hypergridbusiness.com/free-seamless-textures/

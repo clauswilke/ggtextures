@@ -26,5 +26,6 @@ Collate:
     'geom-textured-bar.R'
     'geom-isotype-bar.R'
     'ggtextures.R'
+    'scale-image.R'
     'texture-grob.R'
     'utils.R'

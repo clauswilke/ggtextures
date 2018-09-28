@@ -24,5 +24,7 @@ RoxygenNote: 6.1.0
 Collate: 
     'geom-textured-rect.R'
     'geom-textured-bar.R'
+    'geom-isotype-bar.R'
     'ggtextures.R'
     'texture-grob.R'
+    'utils.R'

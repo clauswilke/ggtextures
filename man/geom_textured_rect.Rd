@@ -7,8 +7,9 @@
 \title{Textured rectangles}
 \usage{
 geom_textured_rect(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE)
+  position = "identity", ..., img_width = unit(1, "null"),
+  img_height = NA, nrow = NA, ncol = NA, na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -41,6 +42,20 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
+\item{img_width}{Unit object specifying the width of the texture image.
+If \code{"null"} unit is used, then the image width is calculated relative
+to the rectangle width.}
+
+\item{img_height}{Unit object specifying the height of the texture image.
+If \code{"null"} unit is used, then the image height is calculated relative
+to the rectangle height.}
+
+\item{nrow}{Number of image rows. If \code{NA}, is calculated automatically
+from the available space.}
+
+\item{ncol}{Number of image columns. If \code{NA}, is calculated automatically
+from the available space.}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
@@ -70,6 +85,6 @@ data <- tibble(
 )
 
 ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +
-  geom_textured_rect()
+  geom_textured_rect(img_width = unit(1, "in"))
 }
 \keyword{datasets}

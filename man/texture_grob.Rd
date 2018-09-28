@@ -9,7 +9,7 @@ texture_grob(img, x = unit(0.5, "npc"), y = unit(0.5, "npc"),
   width = unit(1, "npc"), height = unit(1, "npc"), just = c(0, 0),
   img_width = unit(1, "null"), img_height = NA, nrow = NA,
   ncol = NA, hjust = 0.5, vjust = 0, fill = "#E8E8E8",
-  color = "#000000", lty = 1, lwd = 1, clip = "on")
+  color = "#000000", lty = 1, lwd = 1, clip = "on", repmax = 500)
 }
 \arguments{
 \item{img}{The image, in magick format}
@@ -53,6 +53,10 @@ from the available space.}
 
 \item{clip}{Should images be clipped to rectangle extent? \code{"on"} means
 yes, \code{"off"} means no.}
+
+\item{repmax}{Maximum number of image repetitions. By default set to 500.
+This is a safety check against bad parameter settings that might create
+hundreds of thousands of images or more.}
 }
 \description{
 A texture grob is a grid grob that draws a rectangle filled with an image. The image will

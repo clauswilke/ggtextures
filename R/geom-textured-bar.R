@@ -93,6 +93,11 @@ geom_textured_col <- function(mapping = NULL, data = NULL,
 #' @export
 #' @include geom-textured-rect.R
 GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
+  default_aes = aes(
+    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
+    hjust = 0.5, vjust = 0
+  ),
+
   required_aes = c("x", "image"),
 
   # These aes columns are created by setup_data(). They need to be listed here so
@@ -119,6 +124,11 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
 #' @export
 #' @include geom-textured-rect.R
 GeomTexturedCol <- ggproto("GeomTexturedCol", GeomTexturedRect,
+  default_aes = aes(
+    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
+    hjust = 0.5, vjust = 0
+  ),
+
   required_aes = c("x", "y", "image"),
 
   # These aes columns are created by setup_data(). They need to be listed here so

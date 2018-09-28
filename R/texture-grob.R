@@ -27,6 +27,9 @@
 #' @param lwd Line width for border.
 #' @param clip Should images be clipped to rectangle extent? `"on"` means
 #'   yes, `"off"` means no.
+#' @param repmax Maximum number of image repetitions. By default set to 500.
+#'   This is a safety check against bad parameter settings that might create
+#'   hundreds of thousands of images or more.
 #' @examples
 #' img <- magick::image_read("https://jeroen.github.io/images/Rlogo.png")
 #'
@@ -54,7 +57,7 @@ texture_grob <- function(img,
                          img_width = unit(1, "null"), img_height = NA,
                          nrow = NA, ncol = NA, hjust = 0.5, vjust = 0,
                          fill = "#E8E8E8", color = "#000000", lty = 1,
-                         lwd = 1, clip = "on") {
+                         lwd = 1, clip = "on", repmax = 500) {
   if (is.null(img)) {
     stop("Cannot create texture grob without valid image.", call. = FALSE)
   }
@@ -81,7 +84,7 @@ texture_grob <- function(img,
   g <- gTree(
     img_grob = img_grob, img_width = img_width, img_height = img_height,
     asp = asp, nrow = nrow, ncol = ncol, hjust = hjust, vjust = vjust,
-    fill = fill, color = color, lty = lty, lwd = lwd,
+    fill = fill, color = color, lty = lty, lwd = lwd, repmax = repmax,
     vp = vp, cl = "texture_grob"
   )
 }
@@ -139,26 +142,33 @@ makeContent.texture_grob <- function(x) {
     nrow <- ceiling(grob_height_in / img_height_in) # number of image rows we need
   }
 
-  bg <- rectGrob(gp = gpar(fill = x$fill, color = NA))
-  fg <- rectGrob(gp = gpar(fill = NA, color = x$color, lty = x$lty, lwd = x$lwd))
+  bg <- rectGrob(gp = gpar(fill = x$fill, col = NA))
+  fg <- rectGrob(gp = gpar(fill = NA, col = x$color, lty = x$lty, lwd = x$lwd))
 
-  children <- pmap(
-    expand.grid(row = 1:nrow, col = 1:ncol),
-    function(row, col) {
-      vp <- viewport(
-        x = unit((col - 1 - (ncol - 1)*x$hjust)*img_width_in + x$hjust*grob_width_in, "in"),
-        y = unit((row - 1 - (nrow - 1)*x$vjust)*img_height_in + x$vjust*grob_height_in, "in"),
-        width = unit(img_width_in, "in"), height = unit(img_height_in, "in"),
-        just = c(x$hjust, x$vjust),
-        name = "null"
-      )
-      rg <- img_grob
-      rg$vp <- vp
-      # need to change name, otherwise grid doesn't draw :-(
-      rg$name <- paste0("child.", row, ".", col)
-      rg
-    }
-  )
+  if (nrow*ncol > x$repmax) {
+    warning("Number of tiling images exceeds maximum allowed. Verify your settings or increase `repmax`.", call. = FALSE)
+    children <- list(
+      textGrob("Too many\nimage tiles.\nCheck settings.")
+    )
+  } else {
+    children <- pmap(
+      expand.grid(row = 1:nrow, col = 1:ncol),
+      function(row, col) {
+        vp <- viewport(
+          x = unit((col - 1 - (ncol - 1)*x$hjust)*img_width_in + x$hjust*grob_width_in, "in"),
+          y = unit((row - 1 - (nrow - 1)*x$vjust)*img_height_in + x$vjust*grob_height_in, "in"),
+          width = unit(img_width_in, "in"), height = unit(img_height_in, "in"),
+          just = c(x$hjust, x$vjust),
+          name = "null"
+        )
+        rg <- img_grob
+        rg$vp <- vp
+        # need to change name, otherwise grid doesn't draw :-(
+        rg$name <- paste0("child.", row, ".", col)
+        rg
+      }
+    )
+  }
 
   # add background to children
   children <- c(list(bg), children, list(fg))
@@ -173,10 +183,4 @@ get_asp <- function(img) {
   info <- magick::image_info(img)
   info$height / info$width
 }
-
-# test whether a unit object has unit "null"
-is_null_unit <- function(u) {
-  attr(u, "unit") == "null"
-}
-
 

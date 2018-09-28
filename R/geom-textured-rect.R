@@ -78,3 +78,13 @@ GeomTexturedRect <- ggproto("GeomTexturedRect",
 
   draw_key = draw_key_polygon
 )
+
+
+# sources of free textures to use:
+# https://www.hypergridbusiness.com/free-seamless-textures/
+# (CC0 license)
+#
+# http://www.wildtextures.com/
+# (free for use, can't be redistributed)
+#
+# http://www.cadhatch.com/seamless-textures/4588167680

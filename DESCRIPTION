@@ -21,3 +21,8 @@ Imports:
     scales
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
+Collate: 
+    'geom-textured-rect.R'
+    'geom-textured-bar.R'
+    'ggtextures.R'
+    'texture-grob.R'

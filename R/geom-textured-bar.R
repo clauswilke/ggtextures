@@ -4,6 +4,38 @@
 #' [`geom_bar()`] and [`geom_col()`] but draw textured columns just like
 #' `geom_textured_rect()` does.
 #' @inheritParams ggplot2::geom_bar
+#' @examples
+#' library(ggplot2)
+#' library(tibble)
+#'
+#' # textured columns
+#' df <- tibble(
+#'   trt = c("a", "b", "c"),
+#'   outcome = c(2.3, 1.9, 3.2),
+#'   image = list("http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks2-256.jpg",
+#'                "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/stone2-256.jpg",
+#'                "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/siding1-256.jpg")
+#'   )
+#'
+#' ggplot(df, aes(trt, outcome, image = image)) +
+#'   geom_textured_col()
+#'
+#' # textured bars
+#' image = list(
+#'   compact = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks2-256.jpg",
+#'   midsize = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/stone2-256.jpg",
+#'   suv = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/siding1-256.jpg",
+#'   `2seater` = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/mulch1-256.jpg",
+#'   minivan = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/rocks1-256.jpg",
+#'   pickup = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/wood3-256.jpg",
+#'   subcompact = "http://www.hypergridbusiness.com/wp-content/uploads/2012/12/concrete1-256.jpg"
+#' )
+#'
+#' mpg$image <- image[mpg$class]
+#'
+#' ggplot(mpg, aes(class, image = image)) + geom_textured_bar()
+#'
+#' ggplot(mpg, aes(factor(trans), group = class, image = image)) + geom_textured_bar()
 #' @export
 geom_textured_bar <- function(mapping = NULL, data = NULL,
                               stat = "count", position = "stack",

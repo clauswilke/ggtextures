@@ -124,6 +124,12 @@ get_raster_image <- function(img) {
   UseMethod("get_raster_image", img)
 }
 
+get_raster_image.list <- function(img) {
+  # if we're given a list, we assume it's an image enclosed in a list
+  # this happens e.g. in legend-key drawing
+  get_raster_image(img[[1]])
+}
+
 get_raster_image.default <- function(img) {
   magick::image_read(img)
 }

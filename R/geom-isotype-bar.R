@@ -5,6 +5,7 @@
 #' These two geoms are essentially identical to `geom_textured_bar()` and
 #' `geom_textured_col()`, they just have slightly different default settings.
 #' @inheritParams ggplot2::geom_bar
+#' @inheritParams geom_textured_rect
 #' @param img_height Height of the isotype image, in grid units. Should
 #'   be provided in `"native"` units, which are converted to data units.
 #'   If `NULL`, the image height is taken from the image width and the image
@@ -50,6 +51,7 @@ geom_isotype_bar <- function(mapping = NULL, data = NULL,
                              img_height = grid::unit(1, "native"),
                              img_width = NULL,
                              ncol = 1, nrow = NA,
+                             legend_key_params = NULL,
                              width = NULL,
                              na.rm = FALSE,
                              show.legend = NA,
@@ -64,12 +66,13 @@ geom_isotype_bar <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
+      width = width,
+      na.rm = na.rm,
       img_height = img_height,
       img_width = img_width,
       ncol = ncol,
       nrow = nrow,
-      width = width,
-      na.rm = na.rm,
+      legend_key_params = legend_key_params,
       ...
     )
   )
@@ -83,6 +86,7 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
                              img_height = grid::unit(1, "native"),
                              img_width = NULL,
                              ncol = 1, nrow = NA,
+                             legend_key_params = NULL,
                              width = NULL,
                              na.rm = FALSE,
                              show.legend = NA,
@@ -97,12 +101,13 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
+      width = width,
+      na.rm = na.rm,
       img_height = img_height,
       img_width = img_width,
       ncol = ncol,
       nrow = nrow,
-      width = width,
-      na.rm = na.rm,
+      legend_key_params = legend_key_params,
       ...
     )
   )

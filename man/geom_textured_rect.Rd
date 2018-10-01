@@ -8,8 +8,8 @@
 \usage{
 geom_textured_rect(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., img_width = unit(1, "null"),
-  img_height = NA, nrow = NA, ncol = NA, na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+  img_height = NA, nrow = NA, ncol = NA, legend_key_params = NULL,
+  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -55,6 +55,11 @@ from the available space.}
 
 \item{ncol}{Number of image columns. If \code{NA}, is calculated automatically
 from the available space.}
+
+\item{legend_key_params}{A list holding additional parameters to be handed off
+to \code{texture_grob()} when it is used to draw the legend keys. These parameters
+can be used, for example, to make sure the images in the legend keys have the
+correct size or alignment.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}

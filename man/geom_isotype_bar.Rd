@@ -10,13 +10,15 @@
 \usage{
 geom_isotype_bar(mapping = NULL, data = NULL, stat = "count",
   position = "stack", ..., img_height = grid::unit(1, "native"),
-  img_width = NULL, ncol = 1, nrow = NA, width = NULL,
-  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
+  img_width = NULL, ncol = 1, nrow = NA, legend_key_params = NULL,
+  width = NULL, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
 
 geom_isotype_col(mapping = NULL, data = NULL, stat = "identity",
   position = "stack", ..., img_height = grid::unit(1, "native"),
-  img_width = NULL, ncol = 1, nrow = NA, width = NULL,
-  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
+  img_width = NULL, ncol = 1, nrow = NA, legend_key_params = NULL,
+  width = NULL, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -64,6 +66,11 @@ data extent.}
 
 \item{nrow}{Number of image rows. If \code{NA}, is calculated based on the
 data extent.}
+
+\item{legend_key_params}{A list holding additional parameters to be handed off
+to \code{texture_grob()} when it is used to draw the legend keys. These parameters
+can be used, for example, to make sure the images in the legend keys have the
+correct size or alignment.}
 
 \item{width}{Bar width. By default, set to 90\% of the resolution of the data.}
 

@@ -4,6 +4,7 @@
 #' [`geom_bar()`] and [`geom_col()`] but draw textured columns just like
 #' `geom_textured_rect()` does.
 #' @inheritParams ggplot2::geom_bar
+#' @inheritParams geom_textured_rect
 #' @examples
 #' library(ggplot2)
 #' library(tibble)
@@ -44,6 +45,9 @@
 geom_textured_bar <- function(mapping = NULL, data = NULL,
                               stat = "count", position = "stack",
                               ...,
+                              img_width = unit(1, "null"), img_height = NA,
+                              nrow = NA, ncol = NA,
+                              legend_key_params = NULL,
                               width = NULL,
                               na.rm = FALSE,
                               show.legend = NA,
@@ -60,6 +64,11 @@ geom_textured_bar <- function(mapping = NULL, data = NULL,
     params = list(
       width = width,
       na.rm = na.rm,
+      img_width = img_width,
+      img_height = img_height,
+      nrow = nrow,
+      ncol = ncol,
+      legend_key_params = legend_key_params,
       ...
     )
   )
@@ -109,7 +118,7 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
   # limits, not just those for which x and y are outside the limits
   non_missing_aes = c("xmin", "xmax", "ymin", "ymax"),
 
-  extra_params = c("na.rm", "width"),
+  extra_params = c("na.rm", "width", "legend_key_params"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%
@@ -140,7 +149,7 @@ GeomTexturedCol <- ggproto("GeomTexturedCol", GeomTexturedRect,
   # limits, not just those for which x and y are outside the limits
   non_missing_aes = c("xmin", "xmax", "ymin", "ymax"),
 
-  extra_params = c("na.rm", "width"),
+  extra_params = c("na.rm", "width", "legend_key_params"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%

@@ -9,8 +9,10 @@
 \title{Textured bars}
 \usage{
 geom_textured_bar(mapping = NULL, data = NULL, stat = "count",
-  position = "stack", ..., width = NULL, na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+  position = "stack", ..., img_width = unit(1, "null"),
+  img_height = NA, nrow = NA, ncol = NA, legend_key_params = NULL,
+  width = NULL, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
 
 geom_textured_col(mapping = NULL, data = NULL, stat = "identity",
   position = "stack", ..., width = NULL, na.rm = FALSE,
@@ -46,6 +48,25 @@ a call to a position adjustment function.}
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
+
+\item{img_width}{Unit object specifying the width of the texture image.
+If \code{"null"} unit is used, then the image width is calculated relative
+to the rectangle width.}
+
+\item{img_height}{Unit object specifying the height of the texture image.
+If \code{"null"} unit is used, then the image height is calculated relative
+to the rectangle height.}
+
+\item{nrow}{Number of image rows. If \code{NA}, is calculated automatically
+from the available space.}
+
+\item{ncol}{Number of image columns. If \code{NA}, is calculated automatically
+from the available space.}
+
+\item{legend_key_params}{A list holding additional parameters to be handed off
+to \code{texture_grob()} when it is used to draw the legend keys. These parameters
+can be used, for example, to make sure the images in the legend keys have the
+correct size or alignment.}
 
 \item{width}{Bar width. By default, set to 90\% of the resolution of the data.}
 

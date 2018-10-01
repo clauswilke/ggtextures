@@ -5,8 +5,8 @@
 draw_key_texture <- function(data, params, size) {
   lwd <- min(data$size, min(size) / 4)
 
-  texture_grob(
-    get_raster_image(data$image),
+  tg_args <- list(
+    img = get_raster_image(data$image),
     x = unit(0.5, "npc"), y = unit(0.5, "npc"),
     width = unit(1, "npc") - unit(lwd, "mm"),
     height = unit(1, "npc") - unit(lwd, "mm"),
@@ -22,4 +22,10 @@ draw_key_texture <- function(data, params, size) {
     lwd = lwd * .pt,
     lty = data$linetype
   )
+
+  if (!is.null(params$legend_key_params)) {
+    tg_args <- modifyList(tg_args, params$legend_key_params, keep.null = TRUE)
+  }
+
+  do.call(texture_grob, tg_args)
 }

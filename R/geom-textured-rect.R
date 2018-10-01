@@ -4,6 +4,10 @@
 #' texture images.
 #' @inheritParams ggplot2::geom_raster
 #' @inheritParams texture_grob
+#' @param legend_key_params A list holding additional parameters to be handed off
+#'   to `texture_grob()` when it is used to draw the legend keys. These parameters
+#'   can be used, for example, to make sure the images in the legend keys have the
+#'   correct size or alignment.
 #' @examples
 #' library(ggplot2)
 #' library(tibble)
@@ -25,6 +29,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
                                ...,
                                img_width = unit(1, "null"), img_height = NA,
                                nrow = NA, ncol = NA,
+                               legend_key_params = NULL,
                                na.rm = FALSE,
                                show.legend = NA,
                                inherit.aes = TRUE) {
@@ -42,6 +47,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
       img_height = img_height,
       nrow = nrow,
       ncol = ncol,
+      legend_key_params = legend_key_params,
       ...
     )
   )
@@ -51,14 +57,15 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomTexturedRect <- ggproto("GeomTexturedRect",
-  Geom,
+GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
   default_aes = aes(
     colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
     hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("xmin", "xmax", "ymin", "ymax", "image"),
+
+  extra_params = c("legend_key_params"),
 
   draw_panel = function(self, data, panel_params, coord,
                         img_width = unit(1, "null"), img_height = NA,

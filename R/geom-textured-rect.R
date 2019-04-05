@@ -65,7 +65,7 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
 
   required_aes = c("xmin", "xmax", "ymin", "ymax", "image"),
 
-  extra_params = c("legend_key_params"),
+  extra_params = c("na.rm", "legend_key_params"),
 
   draw_panel = function(self, data, panel_params, coord,
                         img_width = unit(1, "null"), img_height = NA,

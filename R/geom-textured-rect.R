@@ -92,7 +92,6 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
         coords,
         function(xmin, xmax, ymin, ymax, image, hjust, vjust, colour, alpha, fill,
                  size, linetype, ...) {
-
           # native coordinates need to be transformed appropriately
           if (is_native_unit(img_width)) {
             iw <- unit(c(img_width)*dx/(xmax - xmin), "null")
@@ -138,7 +137,13 @@ get_raster_image.list <- function(img) {
 }
 
 get_raster_image.default <- function(img) {
-  magick::image_read(img)
+  if (is.null(img)) {
+    # return an empty image if we have NULL as input
+    # needed for legends
+    magick::image_blank(100, 100)
+  } else {
+    magick::image_read(img)
+  }
 }
 
 `get_raster_image.magick-image` <- function(img) {

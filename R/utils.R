@@ -1,7 +1,7 @@
 # test whether a unit object has unit "null"
 is_null_unit <- function(u) {
   if (is.unit(u)) {
-    identical(grid::unitType(u), "null")  
+    identical(unit_type(u), "null")
   } else {
     FALSE
   }
@@ -10,7 +10,7 @@ is_null_unit <- function(u) {
 # test whether a unit object has unit "native"
 is_native_unit <- function(u) {
   if (is.unit(u)) {
-    identical(grid::unitType(u), "native")
+    identical(unit_type(u), "native")
   } else {
     FALSE
   }

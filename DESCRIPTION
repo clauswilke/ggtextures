@@ -2,10 +2,10 @@ Package: ggtextures
 Title: Drawing Textured Rectangles and Bars with grid and ggplot2
 Version: 0.0.1
 Authors@R: 
-    person(given = "Claus",
-           family = "Wilke",
-           role = c("aut", "cre"),
-           email = "wilke@austin.utexas.edu")
+  person(given = "Claus",
+         family = "Wilke"
+         role = c("aut", "cre"),
+         email = "wilke@austin.utexas.edu")
 Description: This package provides functions and geoms to draw textured rectangles and
   bars with the grid graphics system and with ggplot2. This enables both bar graphs with
   pattern fill and isotype bar graphs.

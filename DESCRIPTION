@@ -30,3 +30,4 @@ Collate:
     'scale-image.R'
     'texture-grob.R'
     'utils.R'
+    'zzz.R'

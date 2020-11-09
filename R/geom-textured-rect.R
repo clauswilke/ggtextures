@@ -4,6 +4,8 @@
 #' texture images.
 #' @inheritParams ggplot2::geom_raster
 #' @inheritParams texture_grob
+#' @param interpolate A logical value indicating whether to linearly interpolate the image
+#'  (the alternative is to use nearest-neighbour interpolation, which gives a more blocky result).
 #' @param legend_key_params A list holding additional parameters to be handed off
 #'   to `texture_grob()` when it is used to draw the legend keys. These parameters
 #'   can be used, for example, to make sure the images in the legend keys have the
@@ -20,7 +22,6 @@
 #'     image_read_svg("https://jeroen.github.io/images/tiger.svg")
 #'    )
 #' )
-#'
 #' ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +
 #'   geom_textured_rect(img_width = unit(1, "in"))
 #' @export
@@ -118,7 +119,7 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
             fill = scales::alpha(fill, alpha),
             lwd = size * .pt,
             lty = linetype,
-            interpolate = interpolate
+            interpolate = interpolate,
           )
         }
       )

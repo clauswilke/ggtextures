@@ -69,8 +69,8 @@ from the available space.}
 \item{ncol}{Number of image columns. If \code{NA}, is calculated automatically
 from the available space.}
 
-\item{interpolate}{If \code{TRUE} interpolate linearly, if \code{FALSE}
-(the default) don't interpolate.}
+\item{interpolate}{A logical value indicating whether to linearly interpolate the image
+(the alternative is to use nearest-neighbour interpolation, which gives a more blocky result).}
 
 \item{legend_key_params}{A list holding additional parameters to be handed off
 to \code{texture_grob()} when it is used to draw the legend keys. These parameters
@@ -107,7 +107,6 @@ data <- tibble(
     image_read_svg("https://jeroen.github.io/images/tiger.svg")
    )
 )
-
 ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +
   geom_textured_rect(img_width = unit(1, "in"))
 }

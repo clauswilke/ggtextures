@@ -22,6 +22,7 @@
 #'     image_read_svg("https://jeroen.github.io/images/tiger.svg")
 #'    )
 #' )
+#'
 #' ggplot(data, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, image = image)) +
 #'   geom_textured_rect(img_width = unit(1, "in"))
 #' @export
@@ -119,7 +120,7 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
             fill = scales::alpha(fill, alpha),
             lwd = size * .pt,
             lty = linetype,
-            interpolate = interpolate,
+            interpolate = interpolate
           )
         }
       )

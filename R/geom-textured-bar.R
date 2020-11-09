@@ -111,8 +111,7 @@ geom_textured_col <- function(mapping = NULL, data = NULL,
 #' @include geom-textured-rect.R
 GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
   default_aes = aes(
-    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    interpolate = TRUE, hjust = 0.5, vjust = 0
+    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("x", "image"),
@@ -142,8 +141,7 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
 #' @include geom-textured-rect.R
 GeomTexturedCol <- ggproto("GeomTexturedCol", GeomTexturedRect,
   default_aes = aes(
-    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    interpolate = TRUE, hjust = 0.5, vjust = 0
+    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("x", "y", "image"),

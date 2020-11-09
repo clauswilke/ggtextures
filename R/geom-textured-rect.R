@@ -63,8 +63,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
 #' @export
 GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
   default_aes = aes(
-    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    interpolate = TRUE, hjust = 0.5, vjust = 0
+    colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("xmin", "xmax", "ymin", "ymax", "image"),

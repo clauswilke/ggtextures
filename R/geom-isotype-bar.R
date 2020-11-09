@@ -18,6 +18,8 @@
 #'   data extent.
 #' @param nrow Number of image rows. If `NA`, is calculated based on the
 #'   data extent.
+#' @param interpolate A logical value indicating whether to linearly interpolate the image
+#'  (the alternative is to use nearest-neighbour interpolation, which gives a more blocky result).
 #' @examples
 #' library(ggplot2)
 #' library(tibble)
@@ -51,6 +53,7 @@ geom_isotype_bar <- function(mapping = NULL, data = NULL,
                              img_height = grid::unit(1, "native"),
                              img_width = NULL,
                              ncol = 1, nrow = NA,
+                             interpolate = TRUE,
                              legend_key_params = NULL,
                              width = NULL,
                              na.rm = FALSE,
@@ -72,6 +75,7 @@ geom_isotype_bar <- function(mapping = NULL, data = NULL,
       img_width = img_width,
       ncol = ncol,
       nrow = nrow,
+      interpolate = interpolate,
       legend_key_params = legend_key_params,
       ...
     )
@@ -86,6 +90,7 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
                              img_height = grid::unit(1, "native"),
                              img_width = NULL,
                              ncol = 1, nrow = NA,
+                             interpolate = TRUE,
                              legend_key_params = NULL,
                              width = NULL,
                              na.rm = FALSE,
@@ -107,6 +112,7 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
       img_width = img_width,
       ncol = ncol,
       nrow = nrow,
+      interpolate = interpolate,
       legend_key_params = legend_key_params,
       ...
     )
@@ -122,7 +128,7 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
 GeomIsotypeBar <- ggproto("GeomIsotypeBar", GeomTexturedBar,
   default_aes = aes(
     colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA,
-    hjust = 0.5, vjust = 0
+    interpolate = TRUE, hjust = 0.5, vjust = 0
   )
 )
 
@@ -134,6 +140,6 @@ GeomIsotypeBar <- ggproto("GeomIsotypeBar", GeomTexturedBar,
 GeomIsotypeCol <- ggproto("GeomIsotypeCol", GeomTexturedCol,
   default_aes = aes(
     colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA,
-    hjust = 0.5, vjust = 0
+    interpolate = TRUE, hjust = 0.5, vjust = 0
   )
 )

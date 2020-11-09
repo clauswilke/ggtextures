@@ -47,6 +47,7 @@ geom_textured_bar <- function(mapping = NULL, data = NULL,
                               ...,
                               img_width = unit(1, "null"), img_height = NA,
                               nrow = NA, ncol = NA,
+                              interpolate = TRUE,
                               legend_key_params = NULL,
                               width = NULL,
                               na.rm = FALSE,
@@ -68,6 +69,7 @@ geom_textured_bar <- function(mapping = NULL, data = NULL,
       img_height = img_height,
       nrow = nrow,
       ncol = ncol,
+      interpolate = interpolate,
       legend_key_params = legend_key_params,
       ...
     )
@@ -79,6 +81,7 @@ geom_textured_bar <- function(mapping = NULL, data = NULL,
 geom_textured_col <- function(mapping = NULL, data = NULL,
                               stat = "identity", position = "stack",
                               ...,
+                              interpolate = TRUE,
                               width = NULL,
                               na.rm = FALSE,
                               show.legend = NA,
@@ -93,6 +96,7 @@ geom_textured_col <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
+      interpolate = interpolate,
       width = width,
       na.rm = na.rm,
       ...
@@ -108,7 +112,7 @@ geom_textured_col <- function(mapping = NULL, data = NULL,
 GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
   default_aes = aes(
     colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    hjust = 0.5, vjust = 0
+    interpolate = TRUE, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("x", "image"),
@@ -118,7 +122,7 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
   # limits, not just those for which x and y are outside the limits
   non_missing_aes = c("xmin", "xmax", "ymin", "ymax"),
 
-  extra_params = c("na.rm", "width", "legend_key_params"),
+  extra_params = c("na.rm", "width", "interpolate", "legend_key_params"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%
@@ -139,7 +143,7 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
 GeomTexturedCol <- ggproto("GeomTexturedCol", GeomTexturedRect,
   default_aes = aes(
     colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    hjust = 0.5, vjust = 0
+    interpolate = TRUE, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("x", "y", "image"),
@@ -149,7 +153,7 @@ GeomTexturedCol <- ggproto("GeomTexturedCol", GeomTexturedRect,
   # limits, not just those for which x and y are outside the limits
   non_missing_aes = c("xmin", "xmax", "ymin", "ymax"),
 
-  extra_params = c("na.rm", "width", "legend_key_params"),
+  extra_params = c("na.rm", "width", "interpolate", "legend_key_params"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%

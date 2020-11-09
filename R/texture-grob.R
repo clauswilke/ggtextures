@@ -30,6 +30,8 @@
 #' @param repmax Maximum number of image repetitions. By default set to 500.
 #'   This is a safety check against bad parameter settings that might create
 #'   hundreds of thousands of images or more.
+#' @param interpolate A logical value indicating whether to linearly interpolate the image
+#'  (the alternative is to use nearest-neighbour interpolation, which gives a more blocky result).
 #' @examples
 #' img <- magick::image_read("https://jeroen.github.io/images/Rlogo.png")
 #'
@@ -57,7 +59,7 @@ texture_grob <- function(img,
                          img_width = unit(1, "null"), img_height = NA,
                          nrow = NA, ncol = NA, hjust = 0.5, vjust = 0,
                          fill = "#E8E8E8", color = "#000000", lty = 1,
-                         lwd = 1, clip = "on", repmax = 500) {
+                         lwd = 1, clip = "on", repmax = 500, interpolate = TRUE) {
   if (is.null(img)) {
     stop("Cannot create texture grob without valid image.", call. = FALSE)
   }
@@ -85,7 +87,7 @@ texture_grob <- function(img,
     img_grob = img_grob, img_width = img_width, img_height = img_height,
     asp = asp, nrow = nrow, ncol = ncol, hjust = hjust, vjust = vjust,
     fill = fill, color = color, lty = lty, lwd = lwd, repmax = repmax,
-    vp = vp, cl = "texture_grob"
+    vp = vp, cl = "texture_grob", interpolate = interpolate
   )
 }
 
@@ -183,4 +185,3 @@ get_asp <- function(img) {
   info <- magick::image_info(img)
   info$height / info$width
 }
-

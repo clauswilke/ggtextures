@@ -29,6 +29,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
                                ...,
                                img_width = unit(1, "null"), img_height = NA,
                                nrow = NA, ncol = NA,
+                               interpolate = TRUE,
                                legend_key_params = NULL,
                                na.rm = FALSE,
                                show.legend = NA,
@@ -47,6 +48,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
       img_height = img_height,
       nrow = nrow,
       ncol = ncol,
+      interpolate = interpolate,
       legend_key_params = legend_key_params,
       ...
     )
@@ -60,12 +62,12 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
 GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
   default_aes = aes(
     colour = "black", fill = "grey85", size = 0.5, linetype = 1, alpha = NA,
-    hjust = 0.5, vjust = 0
+    interpolate = TRUE, hjust = 0.5, vjust = 0
   ),
 
   required_aes = c("xmin", "xmax", "ymin", "ymax", "image"),
 
-  extra_params = c("na.rm", "legend_key_params"),
+  extra_params = c("na.rm", "interpolate", "legend_key_params"),
 
   draw_panel = function(self, data, panel_params, coord,
                         img_width = unit(1, "null"), img_height = NA,
@@ -115,7 +117,8 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
             color = colour,
             fill = scales::alpha(fill, alpha),
             lwd = size * .pt,
-            lty = linetype
+            lty = linetype,
+            interpolate = interpolate
           )
         }
       )

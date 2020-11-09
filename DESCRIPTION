@@ -20,7 +20,7 @@ Imports:
     magick,
     scales
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.1
 Collate: 
     'draw_key_texture.R'
     'geom-textured-rect.R'

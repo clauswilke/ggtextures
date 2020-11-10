@@ -122,7 +122,7 @@ GeomTexturedBar <- ggproto("GeomTexturedBar", GeomTexturedRect,
   # limits, not just those for which x and y are outside the limits
   non_missing_aes = c("xmin", "xmax", "ymin", "ymax"),
 
-  extra_params = c("na.rm", "width", "interpolate", "legend_key_params"),
+  extra_params = c("na.rm", "width", "legend_key_params"),
 
   setup_data = function(data, params) {
     data$width <- data$width %||%

@@ -21,7 +21,7 @@ draw_key_texture <- function(data, params, size) {
     color = data$colour,
     fill = scales::alpha(data$fill, data$alpha),
     lwd = lwd * .pt,
-    lty = data$linetype,
+    lty = data$linetype
   )
 
   if (!is.null(params$legend_key_params)) {

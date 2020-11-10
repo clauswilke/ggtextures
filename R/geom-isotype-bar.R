@@ -127,7 +127,8 @@ geom_isotype_col <- function(mapping = NULL, data = NULL,
 #' @include geom-textured-bar.R
 GeomIsotypeBar <- ggproto("GeomIsotypeBar", GeomTexturedBar,
   default_aes = aes(
-    colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA, hjust = 0.5, vjust = 0
+    colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA,
+    hjust = 0.5, vjust = 0
   )
 )
 
@@ -138,6 +139,7 @@ GeomIsotypeBar <- ggproto("GeomIsotypeBar", GeomTexturedBar,
 #' @include geom-textured-bar.R
 GeomIsotypeCol <- ggproto("GeomIsotypeCol", GeomTexturedCol,
   default_aes = aes(
-    colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA, hjust = 0.5, vjust = 0
+    colour = NA, fill = NA, size = 0.5, linetype = 1, alpha = NA,
+    hjust = 0.5, vjust = 0
   )
 )

@@ -14,6 +14,7 @@ draw_key_texture <- function(data, params, size) {
     img_height = NULL,
     nrow = 1,
     ncol = 1,
+    interpolate = params$interpolate,
     hjust = data$hjust,
     vjust = data$vjust,
     just = c(0.5, 0.5),

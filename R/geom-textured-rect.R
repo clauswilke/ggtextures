@@ -4,6 +4,8 @@
 #' texture images.
 #' @inheritParams ggplot2::geom_raster
 #' @inheritParams texture_grob
+#' @param interpolate A logical value indicating whether to linearly interpolate the image
+#'  (the alternative is to use nearest-neighbour interpolation, which gives a more blocky result).
 #' @param legend_key_params A list holding additional parameters to be handed off
 #'   to `texture_grob()` when it is used to draw the legend keys. These parameters
 #'   can be used, for example, to make sure the images in the legend keys have the
@@ -29,6 +31,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
                                ...,
                                img_width = unit(1, "null"), img_height = NA,
                                nrow = NA, ncol = NA,
+                               interpolate = TRUE,
                                legend_key_params = NULL,
                                na.rm = FALSE,
                                show.legend = NA,
@@ -47,6 +50,7 @@ geom_textured_rect <- function(mapping = NULL, data = NULL,
       img_height = img_height,
       nrow = nrow,
       ncol = ncol,
+      interpolate = interpolate,
       legend_key_params = legend_key_params,
       ...
     )
@@ -69,7 +73,7 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
 
   draw_panel = function(self, data, panel_params, coord,
                         img_width = unit(1, "null"), img_height = NA,
-                        nrow = NA, ncol = NA) {
+                        nrow = NA, ncol = NA, interpolate = TRUE) {
     if (!coord$is_linear()) {
       warning("geom_textured_rect() does not work with nonlinear coords", call. = FALSE)
     } else {
@@ -115,7 +119,8 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
             color = colour,
             fill = scales::alpha(fill, alpha),
             lwd = size * .pt,
-            lty = linetype
+            lty = linetype,
+            interpolate = interpolate
           )
         }
       )

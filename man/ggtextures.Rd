@@ -3,8 +3,4 @@
 \docType{package}
 \name{ggtextures}
 \alias{ggtextures}
-\alias{ggtextures-package}
 \title{Tools for drawing textured rectangles and bars with ggplot}
-\description{
-Tools for drawing textured rectangles and bars with ggplot
-}

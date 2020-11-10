@@ -68,11 +68,11 @@ GeomTexturedRect <- ggproto("GeomTexturedRect", Geom,
 
   required_aes = c("xmin", "xmax", "ymin", "ymax", "image"),
 
-  extra_params = c("na.rm", "interpolate", "legend_key_params"),
+  extra_params = c("na.rm", "legend_key_params"),
 
   draw_panel = function(self, data, panel_params, coord,
                         img_width = unit(1, "null"), img_height = NA,
-                        nrow = NA, ncol = NA) {
+                        nrow = NA, ncol = NA, interpolate = TRUE) {
     if (!coord$is_linear()) {
       warning("geom_textured_rect() does not work with nonlinear coords", call. = FALSE)
     } else {

@@ -1,7 +1,7 @@
 Package: ggtextures
 Title: Drawing Textured Rectangles and Bars with grid and ggplot2
 Version: 0.0.1
-Authors@R: 
+Authors@R:
     person(given = "Claus",
            family = "Wilke",
            role = c("aut", "cre"),
@@ -12,7 +12,7 @@ Description: This package provides functions and geoms to draw textured rectangl
 License: GPL-2 | file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
     ggplot2,
     rlang,
     purrr,
@@ -20,8 +20,8 @@ Imports:
     magick,
     scales
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-Collate: 
+RoxygenNote: 6.1.0
+Collate:
     'draw_key_texture.R'
     'geom-textured-rect.R'
     'geom-textured-bar.R'
